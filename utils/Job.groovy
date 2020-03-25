@@ -7,7 +7,7 @@ class Job {
     }
 
     static void build(def script, def profile) {
-      
+
         script.mavenJob(profile.name) {
             description(profile.description)
             blockOnUpstreamProjects()
@@ -33,7 +33,7 @@ class Job {
             publishers {
                 archiveArtifacts('backend/target/*.jar')
                 if (profile.downstream)
-                    downstream (profile.downstream, 'SUCCESS')
+                    downstream(profile.downstream, 'SUCCESS')
                 if (profile.jacoco)
                     jacocoCodeCoverage(profile.jacoco)
                 hipChat(profile.hipchat)
@@ -42,7 +42,7 @@ class Job {
     }
 
     static void uiUnitTests(def script, def profile) {
-      
+
         script.job(profile.name) {
             description(profile.description)
             blockOnUpstreamProjects()
@@ -69,7 +69,7 @@ class Job {
     }
 
     static void e2eTests(def script, def profile) {
-      
+
         script.job(profile.name) {
             description(profile.description)
             blockOnUpstreamProjects()
@@ -100,16 +100,16 @@ class Job {
     }
 
     static void deploy(def script, def profile) {
-      
+
         script.job(profile.name) {
             description(profile.description)
             steps {
-              shell("Deploy artifacts here and stop server")
-              if (profile.clearDatabase)
-                  shell("dbmaintain clear database")
-              if (profile.importDatabase)
-                  shell("Import some test data")
-              shell("Database migration and update application")
+                shell("Deploy artifacts here and stop server")
+                if (profile.clearDatabase)
+                    shell("dbmaintain clear database")
+                if (profile.importDatabase)
+                    shell("Import some test data")
+                shell("Database migration and update application")
             }
             publishers {
                 if (profile.downstream)

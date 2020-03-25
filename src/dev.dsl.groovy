@@ -1,12 +1,12 @@
-import src.utils.HipChat
-import src.utils.Scm
-import src.utils.Jacoco
-import src.utils.Job
+import utils.HipChat
+import utils.Scm
+import utils.Jacoco
+import utils.Job
 
 def build = Job.name('MyProject', 'Dev', 'Build')
 def uiUnitTests = Job.name('MyProject', 'Dev', 'UI Unit Tests')
 def e2eTests = Job.name('MyProject', 'Dev', 'E2E Tests')
-def deploy = Job.name('MyProject', 'Dev', 'Deploy');
+def deploy = Job.name('MyProject', 'Dev', 'Deploy')
 
 Job.build(this,
 [
